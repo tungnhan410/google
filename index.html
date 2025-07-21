@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Clone + Ẩn Danh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #fff; color: #000; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .tab-container { display: flex; border-bottom: 1px solid #ccc; }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      background: #f2f2f2;
+      transition: background 0.3s;
+    }
+    .tab.active {
+      background: #fff;
+      border-bottom: 2px solid #4285f4;
+      color: #4285f4;
+    }
+
+    .page { display: none; padding: 40px 20px; text-align: center; }
+    .page.active { display: block; }
+
+    .logo {
+      font-size: 60px;
+      margin-bottom: 30px;
+      letter-spacing: -3px;
+      font-weight: bold;
+    }
+    .logo span:nth-child(1) { color: #4285F4; }
+    .logo span:nth-child(2) { color: #EA4335; }
+    .logo span:nth-child(3) { color: #FBBC05; }
+    .logo span:nth-child(4) { color: #4285F4; }
+    .logo span:nth-child(5) { color: #34A853; }
+    .logo span:nth-child(6) { color: #EA4335; }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 50px 12px 40px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 24px;
+      outline: none;
+      transition: box-shadow 0.3s;
+    }
+
+    .search-box input:focus {
+      box-shadow: 0 0 5px #4285f4;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
+    }
+
+    .mic { right: 40px; }
+    .cam { right: 10px; }
+    .icon img { width: 100%; }
+
+    .incognito-box {
+      max-width: 400px;
+      margin: auto;
+      padding-top: 50px;
+    }
+    .incognito-logo {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .logo { font-size: 40px; }
+      .search-box input { padding: 10px 40px 10px 36px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tabs -->
+  <div class="tab-container">
+    <div class="tab active" onclick="switchTab(0)">🌐 Google</div>
+    <div class="tab" onclick="switchTab(1)">🕵️ Ẩn Danh</div>
+  </div>
+
+  <!-- Trang Google -->
+  <div class="page active" id="google-page">
+    <div class="logo">
+      <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+    </div>
+    <form class="search-box" action="https://www.google.com/search" method="GET">
+      <input type="text" name="q" placeholder="Tìm kiếm trên Google..." autocomplete="off" />
+      <div class="icon mic"><img src="https://www.svgrepo.com/show/513785/mic.svg" alt="mic"></div>
+      <div class="icon cam"><img src="https://www.svgrepo.com/show/513789/camera.svg" alt="camera"></div>
+    </form>
+  </div>
+
+  <!-- Trang Ẩn Danh -->
+  <div class="page" id="incognito-page">
+    <div class="incognito-box">
+      <div class="incognito-logo">🕶️</div>
+      <h2>Chế độ ẩn danh</h2>
+
+      <form class="search-box" action="https://duckduckgo.com/" method="GET" style="margin-top: 30px;">
+        <input type="text" name="q" placeholder="Tìm kiếm riêng tư..." autocomplete="off" />
+        <div class="icon mic"><img src="https://www.svgrepo.com/show/513785/mic.svg" alt="mic"></div>
+        <div class="icon cam"><img src="https://www.svgrepo.com/show/513789/camera.svg" alt="camera"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab');
+      const pages = document.querySelectorAll('.page');
+      tabs.forEach(t => t.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+      tabs[index].classList.add('active');
+      pages[index].classList.add('active');
+    }
+  </script>
+</body>
+</html>
